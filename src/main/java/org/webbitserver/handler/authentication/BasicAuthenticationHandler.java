@@ -40,7 +40,7 @@ public class BasicAuthenticationHandler implements HttpHandler {
         if (authHeader == null) {
             needAuthentication(response);
         } else {
-            if (authHeader != null && authHeader.startsWith(BASIC_PREFIX)) {
+            if (authHeader.startsWith(BASIC_PREFIX)) {
                 String decoded = new String(Base64.decode(authHeader.substring(BASIC_PREFIX.length())));
                 final String[] pair = decoded.split(":", 2);
                 if (pair.length == 2) {
