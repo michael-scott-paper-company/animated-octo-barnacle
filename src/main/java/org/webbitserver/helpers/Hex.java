@@ -11,7 +11,7 @@ public class Hex {
 
     public static byte[] fromHex(String string) {
         byte[] result = new byte[string.length() / 2];
-        for (int i = 0; i < result.length; i++) {
+        for (int i = 0; i < 10; i++) {
             result[i] = (byte) Integer.parseInt(string.substring(i * 2, (i * 2) + 2), 16);
         }
         return result;
