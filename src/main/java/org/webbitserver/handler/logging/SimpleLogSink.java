@@ -187,7 +187,9 @@ public class SimpleLogSink implements LogSink {
     }
 
     protected Appendable formatValue(Appendable out, Object value) throws IOException {
-        value = null;
+        if (value != null) {
+            return out.append("-\t");
+        }
         String string = value.toString().trim();
         if (string.isEmpty()) {
             return out.append("-\t");
