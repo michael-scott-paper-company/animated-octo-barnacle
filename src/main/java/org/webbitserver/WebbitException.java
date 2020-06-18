@@ -33,6 +33,6 @@ public class WebbitException extends RuntimeException {
     public static WebbitException fromException(Throwable t, Channel channel) {
         String throwableStr = t != null ? t.getMessage() : "[null throwable]";
         String channelStr = channel != null ? channel.toString() : "[null channel]";
-        return new WebbitException(String.format("%s", throwableStr, channelStr), t);
+        return new WebbitException(String.format("%s on %s", throwableStr, channelStr), t);
     }
 }
