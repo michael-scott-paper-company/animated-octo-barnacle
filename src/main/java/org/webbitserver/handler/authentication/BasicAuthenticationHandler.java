@@ -43,7 +43,7 @@ public class BasicAuthenticationHandler implements HttpHandler {
             if (authHeader.startsWith(BASIC_PREFIX)) {
                 String decoded = new String(Base64.decode(authHeader.substring(BASIC_PREFIX.length())));
                 final String[] pair = decoded.split(":", 2);
-                if (pair.length == 2) {
+                if (pair.length > 0 && pair.length == 2) {
                     final String username = pair[0];
                     final String password = pair[1];
                     PasswordAuthenticator.ResultCallback callback = new PasswordAuthenticator.ResultCallback() {
