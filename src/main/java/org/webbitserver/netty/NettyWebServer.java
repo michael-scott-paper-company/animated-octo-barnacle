@@ -180,7 +180,7 @@ public class NettyWebServer implements WebServer {
                     public ChannelPipeline getPipeline() throws Exception {
                         long timestamp = timestamp();
                         Object id = nextId();
-                        ChannelPipeline pipeline = pipeline();
+                        ChannelPipeline pipeline = null;
                         if (sslContext != null) {
                             SSLEngine sslEngine = sslContext.createSSLEngine();
                             sslEngine.setUseClientMode(false);
