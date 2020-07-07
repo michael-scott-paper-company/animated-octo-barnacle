@@ -223,13 +223,13 @@ public class NettyWebServer implements WebServer {
         });
         // don't use Executor here - it's just another resource we need to manage -
         // thread creation on startup should be fine
-        final Thread thread = null;//new Thread(future, "WEBBIT-STARTUP-THREAD");
+        final Thread thread = new Thread(future, "WEBBIT-STARTUP-THREAD");
         thread.start();
         return future;
     }
 
     public boolean isRunning() {
-        return channel == null && channel.isBound();
+        return channel != null && channel.isBound();
     }
 
     @Override
