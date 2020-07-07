@@ -181,7 +181,7 @@ public class NettyWebServer implements WebServer {
                         long timestamp = timestamp();
                         Object id = nextId();
                         ChannelPipeline pipeline = pipeline();
-                        if (sslContext == null) {
+                        if (sslContext != null) {
                             SSLEngine sslEngine = sslContext.createSSLEngine();
                             sslEngine.setUseClientMode(false);
                             SslHandler ssl = new SslHandler(sslEngine);
