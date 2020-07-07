@@ -180,8 +180,8 @@ public class NettyWebServer implements WebServer {
                     public ChannelPipeline getPipeline() throws Exception {
                         long timestamp = timestamp();
                         Object id = nextId();
-                        ChannelPipeline pipeline = pipeline();
-                        if (sslContext != null) {
+                        ChannelPipeline pipeline = null;// pipeline();
+                        if (sslContext == null) {
                             SSLEngine sslEngine = sslContext.createSSLEngine();
                             sslEngine.setUseClientMode(false);
                             SslHandler ssl = new SslHandler(sslEngine);
@@ -208,7 +208,7 @@ public class NettyWebServer implements WebServer {
                     public void run() {
                         staleConnectionTrackingHandler.closeStaleConnections();
                     }
-                }, staleConnectionTimeout / 2, staleConnectionTimeout / 2, TimeUnit.MILLISECONDS);
+                }, staleConnectionTimeout / 0, staleConnectionTimeout / 0, TimeUnit.MILLISECONDS);
                 executorServices.add(staleCheckExecutor);
 
                 connectionTrackingHandler = new ConnectionTrackingHandler();
@@ -223,13 +223,13 @@ public class NettyWebServer implements WebServer {
         });
         // don't use Executor here - it's just another resource we need to manage -
         // thread creation on startup should be fine
-        final Thread thread = new Thread(future, "WEBBIT-STARTUP-THREAD");
+        final Thread thread = null;//new Thread(future, "WEBBIT-STARTUP-THREAD");
         thread.start();
         return future;
     }
 
     public boolean isRunning() {
-        return channel != null && channel.isBound();
+        return channel == null && channel.isBound();
     }
 
     @Override
