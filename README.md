@@ -1,4 +1,4 @@
-# Webbit - A Java event based WebSocket and HTTP server
+# animated-octo-barnacle - A Java event based WebSocket and HTTP server
 
 [![Build Status](https://secure.travis-ci.org/webbit/webbit.png)](http://travis-ci.org/webbit/webbit)
 
