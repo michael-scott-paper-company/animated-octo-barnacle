@@ -208,7 +208,7 @@ public class StaticFileHandlerTest {
     public void shouldHandleCacheHeaders() throws Exception {
         mkdir("a/b");
         writeFile("index_cache.html", "Blah");
-        Long  aYearAgo = (new Date()).getTime() - (365 * 24 * 60 * 60 * 1000); 
+        Long  aYearAgo = (new Date()).getTime() - (365L * 24L * 60L * 60L * 1000L); 
         Long  aYearFromNow = (new Date()).getTime() + (365 * 24 * 60 * 60 * 1000); 
         assertEquals(true, handle(request("/index_cache.html")).header("Last-Modified") != null);
         assertEquals(true, handle(request("/index_cache.html")).header("ETag") != null);
