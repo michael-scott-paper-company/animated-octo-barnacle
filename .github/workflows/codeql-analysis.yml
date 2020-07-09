@@ -56,4 +56,4 @@ jobs:
         pwd
         ls -l
         ls -l codeql_databases/
-        ls -l "${RUNNER_TEMP}/codeql_databases"
+        ls -lR "${RUNNER_TEMP}/codeql_databases"
