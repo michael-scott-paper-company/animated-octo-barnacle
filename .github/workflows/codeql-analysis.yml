@@ -49,3 +49,11 @@ jobs:
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v1
+    
+    - run: |
+        echo "\$RUNNER_TEMP='${RUNNER_TEMP}'"
+        cd $RUNNER_TEMP
+        pwd
+        ls -l
+        ls -l codeql_databases/
+        ls -l "${RUNNER_TEMP}/codeql_databases"
