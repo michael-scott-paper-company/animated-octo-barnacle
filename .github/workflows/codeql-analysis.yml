@@ -54,4 +54,4 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: codeql_databases
-        path: ${RUNNER_TEMP}/codeql_databases
+        path: /home/runner/work/_temp/codeql_databases
