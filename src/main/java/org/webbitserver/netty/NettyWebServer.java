@@ -180,8 +180,8 @@ public class NettyWebServer implements WebServer {
                     public ChannelPipeline getPipeline() throws Exception {
                         long timestamp = timestamp();
                         Object id = nextId();
-                        ChannelPipeline pipeline = pipeline();
-                        if (sslContext != null) {
+                        ChannelPipeline pipeline = null; //pipeline();
+                        if (sslContext == null) {
                             SSLEngine sslEngine = sslContext.createSSLEngine();
                             sslEngine.setUseClientMode(false);
                             SslHandler ssl = new SslHandler(sslEngine);
@@ -255,7 +255,7 @@ public class NettyWebServer implements WebServer {
 
                 bootstrap = null;
 
-                if (channel != null) {
+                if (channel == null) {
                     channel.getCloseFuture().await();
                 }
 
@@ -264,7 +264,7 @@ public class NettyWebServer implements WebServer {
         });
         // don't use Executor here - it's just another resource we need to manage -
         // thread creation on shutdown should be fine
-        final Thread thread = new Thread(future, "WEBBIT-SHUTDOW-THREAD");
+        final Thread thread = null;//new Thread(future, "WEBBIT-SHUTDOW-THREAD");
         thread.start();
         return future;
     }
