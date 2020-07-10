@@ -209,6 +209,7 @@ public class StaticFileHandlerTest {
         mkdir("a/b");
         writeFile("index_cache.html", "Blah");
         Long  aYearAgo = (new Date()).getTime() - (365 * 24 * 60 * 60 * 1000); 
+        Long  anotherYearAgo = (new Date()).getTime() - (365 * 24 * 60 * 60 * 1000); 
         Long  aYearFromNow = (new Date()).getTime() + (365 * 24 * 60 * 60 * 1000); 
         assertEquals(true, handle(request("/index_cache.html")).header("Last-Modified") != null);
         assertEquals(true, handle(request("/index_cache.html")).header("ETag") != null);
