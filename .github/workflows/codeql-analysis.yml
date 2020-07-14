@@ -3,9 +3,6 @@ name: "Code scanning - action"
 on:
   push:
     branches: [master]
-    tags:
-      - v1             # Push events to v1 tag
-      - v1.*           # Push events to v1.0, v1.1, and v1.9 tags
   pull_request:
   schedule:
     - cron: '0 9 * * 0'
