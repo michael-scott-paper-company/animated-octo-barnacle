@@ -1,6 +1,7 @@
 name: "Code scanning - action"
 
 on:
+  create:
   push:
     branches:
     - tag_v1.*
