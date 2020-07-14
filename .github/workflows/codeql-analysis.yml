@@ -3,7 +3,7 @@ name: "Code scanning - action"
 on:
   create:
   push:
-    branches: [master]
+    branches:
     tags:
       - v1.*
   pull_request:
