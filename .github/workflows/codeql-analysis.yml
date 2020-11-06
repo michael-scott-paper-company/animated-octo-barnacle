@@ -14,7 +14,7 @@ jobs:
   CodeQL-Build:
     env:
       LGTM_SRC: ${{ github.workspace }}
-      LGTM_WORKSPACE: ${{ github.workspace }}/..
+      LGTM_WORKSPACE: ${{ github.workspace }}/../temp_this_cant_exist
     runs-on: ubuntu-latest
     steps:
     - run: |
