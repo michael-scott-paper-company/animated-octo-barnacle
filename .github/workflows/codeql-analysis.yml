@@ -14,7 +14,7 @@ jobs:
   CodeQL-Build:
     env:
       LGTM_SRC: ${{ github.workspace }}
-      LGTM_WORKSPACE: ${{ runner.temp }}
+      LGTM_WORKSPACE: ${{ github.workspace }}/..
     runs-on: ubuntu-latest
     steps:
     - run: |
