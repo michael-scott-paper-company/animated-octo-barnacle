@@ -12,9 +12,10 @@ on:
 
 jobs:
   CodeQL-Build:
-
+    env:
+      LGTM_SRC: ${{ env.GITHUB_WORKSPACE }}
+      LGTM_WORKSPACE: $GITHUB_WORKSPACE
     runs-on: ubuntu-latest
-
     steps:
     - name: Checkout repository
       if: ${{ github.event_name == 'workflow_dispatch' }}
