@@ -13,10 +13,13 @@ on:
 jobs:
   CodeQL-Build:
     env:
-      LGTM_SRC: ${{ env.GITHUB_WORKSPACE }}
+      LGTM_SRC: ${{ github.workspace }}
       LGTM_WORKSPACE: $GITHUB_WORKSPACE
     runs-on: ubuntu-latest
     steps:
+    - run: |
+        echo "\$LGTM_SRC=$LGTM_SRC"
+        echo "\$LGTM_WORKSPACE=$LGTM_WORKSPACE"
     - name: Checkout repository
       if: ${{ github.event_name == 'workflow_dispatch' }}
       uses: actions/checkout@v2
