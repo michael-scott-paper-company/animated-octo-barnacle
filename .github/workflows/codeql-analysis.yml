@@ -12,12 +12,12 @@ on:
 
 jobs:
   CodeQL-Build:
-    env:
-      LGTM_SRC: ${{ github.workspace }}
-      LGTM_WORKSPACE: ${{ runner.temp }}
     runs-on: ubuntu-latest
     steps:
-    - run: |
+    - env:
+        LGTM_SRC: ${{ github.workspace }}
+        LGTM_WORKSPACE: ${{ runner.temp }}
+      run: |
         echo "\$LGTM_SRC=$LGTM_SRC"
         cd $LGTM_SRC && pwd
         cd $LGTM_WORKSPACE && pwd
