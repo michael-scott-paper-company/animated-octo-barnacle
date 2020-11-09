@@ -9,18 +9,18 @@ on:
   push:
     branches: [master]
   pull_request:
-    
-env:
-  LGTM_SRC: ${{ github.workspace }}
 
 jobs:
   CodeQL-Build:
+    env:
+      LGTM_SRC: ${{ github.workspace }}
+      LGTM_WORKSPACE: ${{ runner.temp }}
     runs-on: ubuntu-latest
     steps:
     - run: |
         echo "\$LGTM_SRC=$LGTM_SRC"
         cd $LGTM_SRC && pwd
-        cd ${{ runner.temp }} && pwd
+        cd $LGTM_WORKSPACE && pwd
     - name: Checkout repository
       if: ${{ github.event_name == 'workflow_dispatch' }}
       uses: actions/checkout@v2
