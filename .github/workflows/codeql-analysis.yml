@@ -14,13 +14,6 @@ jobs:
   CodeQL-Build:
     runs-on: ubuntu-latest
     steps:
-    - env:
-        LGTM_SRC: ${{ github.workspace }}
-        LGTM_WORKSPACE: ${{ runner.temp }}
-      run: |
-        echo "\$LGTM_SRC=$LGTM_SRC"
-        cd $LGTM_SRC && pwd
-        cd $LGTM_WORKSPACE && pwd
     - name: Checkout repository
       if: ${{ github.event_name == 'workflow_dispatch' }}
       uses: actions/checkout@v2
@@ -64,7 +57,15 @@ jobs:
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v1
-    - name: Upload CodeQL DB
-      uses: mario-campos/upload-codeql-db@main
+      
+    - name: Output CodeQL DB
+      id: output-codeql-db
+      uses: mario-campos/output-codeql-db@main
       with:
         language: java
+        
+    - name: Upload CodeQL database
+      uses: actions/upload-artifact@v2
+      with:
+        name: java-db.zip
+        path: ${{ steps.output-codeql-db.outputs.database-path }}
