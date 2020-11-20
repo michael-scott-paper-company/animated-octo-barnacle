@@ -1,4 +1,35 @@
-- description: Standard LGTM queries for Java
-- apply: codeql-suites/java-lgtm-full.qls
-- apply: lgtm-displayed-only.yml
-  from: codeql-suite-helpers
+- description: Standard LGTM queries for Java, including ones not displayed by default
+- qlpack: codeql-java
+- include:
+    kind:
+    - problem
+    - path-problem
+    precision:
+    - high
+    - very-high
+- include:
+    kind:
+    - problem
+    - path-problem
+    precision: medium
+    problem.severity:
+      - error
+      - warning
+- include:
+    kind:
+      - definitions
+      - alert-suppression
+      - file-classifier
+- exclude:
+    deprecated: //
+- exclude:
+    query path: /^experimental\/.*/
+# These are only for IDE use.
+- exclude:
+    tags contain:
+      - ide-contextual-queries/local-definitions
+      - ide-contextual-queries/local-references
+- query: Metrics/Files/FLinesOfCode.ql
+- query: Metrics/Files/FLinesOfCommentedCode.ql
+- query: Metrics/Files/FLinesOfComment.ql
+- query: Metrics/Files/FNumberOfTests.ql
