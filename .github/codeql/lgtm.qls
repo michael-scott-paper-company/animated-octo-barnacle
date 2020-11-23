@@ -1,0 +1,6 @@
+# Reusing existing QL Pack
+- import: codeql-suites/java-lgtm-full.qls
+  from: codeql-java
+- exclude:
+    id:
+    - java/spring-disabled-csrf-protection
