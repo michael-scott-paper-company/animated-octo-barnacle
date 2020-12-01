@@ -14,11 +14,6 @@ jobs:
     - uses: actions/checkout@v2
     - run: git checkout HEAD^2
       if: ${{ github.event_name == 'pull_request' }}
-    
-    - uses: actions/cache@v2
-      with:
-        key: ${{ github.ref }}
-        path: ${{ runner.temp }}/codeql_databases/java
       
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v1
@@ -30,15 +25,3 @@ jobs:
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v1
-      
-    - name: Output CodeQL DB
-      id: output-codeql-db
-      uses: mario-campos/output-codeql-db@main
-      with:
-        language: java
-        
-    - name: Upload CodeQL database
-      uses: actions/upload-artifact@v2
-      with:
-        name: java-db.zip
-        path: ${{ steps.output-codeql-db.outputs.path }}
