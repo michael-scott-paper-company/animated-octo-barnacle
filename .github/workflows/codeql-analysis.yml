@@ -12,8 +12,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - run: git checkout HEAD^2
-      if: ${{ github.event_name == 'pull_request' }}
       
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v1
@@ -33,5 +31,5 @@ jobs:
     - run: echo ${{ steps.output-codeql-db.outputs.path }}
     - uses: actions/upload-artifact@v2
       with:
-        name: codeql-db.zip
+        name: codeql-db
         path: ${{ steps.output-codeql-db.outputs.path }}
