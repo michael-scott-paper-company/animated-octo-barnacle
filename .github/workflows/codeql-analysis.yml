@@ -28,8 +28,7 @@ jobs:
       uses: mario-campos/output-codeql-db@main
       with:
         language: java
-    - run: echo ${{ steps.output-codeql-db.outputs.path }}
+        codeql: /opt/hostedtoolcache/CodeQL/0.0.0-20201106/x64/codeql/codeql
     - uses: actions/upload-artifact@v2
       with:
-        name: codeql-db
         path: ${{ steps.output-codeql-db.outputs.path }}
