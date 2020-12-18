@@ -1,4 +1,4 @@
 disable-default-queries: true
 queries:
-  - uses: /opt/hostedtoolcache/CodeQL/0.0.0-20201106/x64/codeql/qlpacks/codeql-java/Likely Bugs/Arithmetic/InformationLoss.ql
+  - uses: ../../../../../../../../../../../../../../../../../../../opt/hostedtoolcache/CodeQL/0.0.0-20201106/x64/codeql/qlpacks/codeql-java/Likely Bugs/Arithmetic/InformationLoss.ql
 # - uses: ./.github/codeql/lgtm.qls
