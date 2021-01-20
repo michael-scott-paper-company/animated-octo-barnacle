@@ -8,4 +8,8 @@ jobs:
     runs-on: windows-latest
     steps:
     - run: |
-        Get-Childitem –Path C:\ -Recurse –force -ErrorAction SilentlyContinue -File | Where-Object { $_.Name -eq "vs_enterprise.exe" }
+        vs_professional.exe --add Microsoft.VisualStudio.Workload.WebBuildTools --includeRecommended
+    - run: |
+        vs_community.exe --add Microsoft.VisualStudio.Workload.WebBuildTools --includeRecommended
+    - run: |
+        vs_enterprise.exe --add Microsoft.VisualStudio.Workload.WebBuildTools --includeRecommended
