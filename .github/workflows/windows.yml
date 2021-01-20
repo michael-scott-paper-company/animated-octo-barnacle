@@ -1,0 +1,11 @@
+name: Windows
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+    - run: |
+        Get-Childitem –Path C:\ -Recurse –force -ErrorAction SilentlyContinue -File | Where-Object { $_.Name -eq "vs_enterprise.exe" }
