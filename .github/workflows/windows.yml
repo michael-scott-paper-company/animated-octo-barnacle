@@ -8,8 +8,6 @@ jobs:
     runs-on: windows-latest
     steps:
     - run: |
-        vs_professional.exe --add Microsoft.VisualStudio.Workload.WebBuildTools --includeRecommended
-    - run: |
         vs_community.exe --add Microsoft.VisualStudio.Workload.WebBuildTools --includeRecommended
     - run: |
         vs_enterprise.exe --add Microsoft.VisualStudio.Workload.WebBuildTools --includeRecommended
