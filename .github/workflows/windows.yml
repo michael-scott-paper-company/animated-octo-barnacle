@@ -8,4 +8,4 @@ jobs:
     runs-on: windows-latest
     steps:
     - run: |
-        vs_BuildTools.exe --add Microsoft.VisualStudio.Workload.WebBuildTools --passive
+        choco install visualstudio2017-workload-webbuildtools
