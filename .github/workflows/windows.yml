@@ -8,4 +8,4 @@ jobs:
     runs-on: windows-latest
     steps:
     - run: |
-        Install-Package MSBuild.Microsoft.VisualStudio.Web.targets -Version 14.0.0.3
+        Install-Package MSBuild.Microsoft.VisualStudio.Web.targets
