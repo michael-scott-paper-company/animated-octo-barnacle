@@ -15,8 +15,6 @@ jobs:
       
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v1
-      with:
-        config-file: ./.github/codeql/config.yml
 
     - name: Autobuild
       uses: github/codeql-action/autobuild@v1
@@ -25,5 +23,4 @@ jobs:
       uses: github/codeql-action/analyze@v1
     
     - run: |
-        ls -l $GITHUB_WORKSPACE/results
         ls -l $GITHUB_WORKSPACE/../results
