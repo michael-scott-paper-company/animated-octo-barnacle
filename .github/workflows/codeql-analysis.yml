@@ -23,12 +23,7 @@ jobs:
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v1
-      
-    - id: output-codeql-db
-      uses: mario-campos/output-codeql-db@main
-      with:
-        language: java
-        codeql: /opt/hostedtoolcache/CodeQL/0.0.0-20201106/x64/codeql/codeql
-    - uses: actions/upload-artifact@v2
-      with:
-        path: ${{ steps.output-codeql-db.outputs.path }}
+    
+    - run: |
+        ls -l $GITHUB_WORKSPACE/results
+        ls -l $GITHUB_WORKSPACE/../results
