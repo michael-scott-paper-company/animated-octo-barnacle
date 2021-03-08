@@ -10,6 +10,8 @@ on:
 jobs:
   CodeQL-Build:
     runs-on: self-hosted
+    container: ubuntu:latest
+    
     steps:
     - uses: actions/checkout@v2
       
@@ -17,6 +19,7 @@ jobs:
       uses: github/codeql-action/init@v1
       with:
         queries: security-extended
+        language: javascript
 
     - name: Autobuild
       uses: github/codeql-action/autobuild@v1
