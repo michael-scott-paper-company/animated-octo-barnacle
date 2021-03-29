@@ -16,7 +16,7 @@ jobs:
       uses: github/codeql-action/init@v1
       with:
         queries: security-extended
-        language: javascript
+        languages: javascript
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v1
   CodeQL-Java:
@@ -26,7 +26,7 @@ jobs:
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v1
       with:
-        language: java
+        languages: java
     - name: Autobuild
       uses: github/codeql-action/autobuild@v1
     - name: Perform CodeQL Analysis
