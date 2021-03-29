@@ -8,24 +8,27 @@ on:
   workflow_dispatch:
 
 jobs:
-  CodeQL-Build:
-    runs-on: self-hosted
-    container: ubuntu:latest
-    
+  CodeQL-JavaScript:
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-      
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v1
       with:
         queries: security-extended
         language: javascript
-
-    - name: Autobuild
-      uses: github/codeql-action/autobuild@v1
-
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v1
-    
-    - run: |
-        ls -l $GITHUB_WORKSPACE/../results
+  CodeQL-Java:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Initialize CodeQL
+      uses: github/codeql-action/init@v1
+      with:
+        language: java
+    - name: Autobuild
+      uses: github/codeql-action/autobuild@v1
+    - name: Perform CodeQL Analysis
+      uses: github/codeql-action/analyze@v1
+
