@@ -11,9 +11,16 @@ jobs:
   CodeQL-JavaScript:
     runs-on: ubuntu-latest
     steps:
+    # Does ${{ secrets.FOO }} show up in the environment when not explicitly used?
     - run: env
+    # How about when explicitly used?
+    - env:
+        FOO: ${{ secrets.FOO }}
+      run: env
+    # IF ${{ secrets.FOO }} is in the environment, does overriding it change it?
     - env:
         GITHUB_TOKEN: ''
+        FOO: ''
       run: env
     - uses: actions/checkout@v2
     - name: Initialize CodeQL
