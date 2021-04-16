@@ -11,6 +11,10 @@ jobs:
   CodeQL-JavaScript:
     runs-on: ubuntu-latest
     steps:
+    - run: env
+    - env:
+        GITHUB_TOKEN: ''
+      run: env
     - uses: actions/checkout@v2
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v1
