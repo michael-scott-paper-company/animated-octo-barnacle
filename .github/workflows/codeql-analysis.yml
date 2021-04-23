@@ -10,9 +10,7 @@ on:
 jobs:
   CodeQL-JavaScript:
     runs-on: self-hosted
-    container:
-      image: ubuntu:latest
-      options: -u 1000:1000
+    container: ubuntu:latest
     steps:
     - uses: actions/checkout@v2
     - name: Initialize CodeQL
