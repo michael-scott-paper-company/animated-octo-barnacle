@@ -10,6 +10,7 @@ on:
 jobs:
   CodeQL-JavaScript:
     runs-on: ubuntu-latest
+    container: ubuntu:latest
     steps:
     - uses: actions/checkout@v2
     - name: Initialize CodeQL
