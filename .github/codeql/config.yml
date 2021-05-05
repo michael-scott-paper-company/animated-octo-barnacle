@@ -1,2 +1,8 @@
-queries:
-- uses: ./.github/codeql/lgtm.qls
+paths:
+- src
+
+paths-ignore:
+- src
+
+# queries:
+# - uses: ./.github/codeql/lgtm.qls
