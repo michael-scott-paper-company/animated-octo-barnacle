@@ -1,8 +1,7 @@
 paths:
-- src/test
+- src/tes?
+- [st]rc
 
-paths-ignore:
-- src/test/resources/web
 
 # queries:
 # - uses: ./.github/codeql/lgtm.qls
