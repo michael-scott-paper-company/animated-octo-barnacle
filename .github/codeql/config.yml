@@ -2,7 +2,7 @@ paths:
 - src/test
 
 paths-ignore:
-- src/test/web
+- src/test/resources/web
 
 # queries:
 # - uses: ./.github/codeql/lgtm.qls
