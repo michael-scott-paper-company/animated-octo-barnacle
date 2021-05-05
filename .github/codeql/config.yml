@@ -1,5 +1,5 @@
 paths:
-- src
+- src/test
 
 paths-ignore:
 - src
