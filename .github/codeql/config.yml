@@ -1,5 +1,8 @@
 paths:
-- src/tes?
+- src/test
+
+paths-ignore:
+- src
 
 
 # queries:
