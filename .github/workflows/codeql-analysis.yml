@@ -9,23 +9,15 @@ on:
 
 jobs:
   CodeQL-JavaScript:
-    container: ubuntu:latest
+    container:
+      image: ubuntu:latest
+      options: -u 1000:1000
     runs-on: self-hosted
     steps:
     - uses: actions/checkout@v2
-    - continue-on-error: true
-      run: |
-        echo '$GITHUB_WORKSPACE = '$GITHUB_WORKSPACE
-        ls -l /__w
-        ls -l $GITHUB_WORKSPACE/../..
-        ls -l /__w/foo/foo
-        ls -l $GITHUB_WORKSPACE/../../foo/foo
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v1
       with:
         languages: javascript
-        config-file: ./.github/codeql/config.yml
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v1
-    - if: always()
-      run: rm -rf "$(realpath $GITHUB_WORKSPACE/..)"
