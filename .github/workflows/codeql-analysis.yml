@@ -18,7 +18,7 @@ jobs:
         echo '$GITHUB_WORKSPACE = '$GITHUB_WORKSPACE
         ls -l /__w
         ls -l $GITHUB_WORKSPACE/../..
-        ls -l /__/foo/foo
+        ls -l /__w/foo/foo
         ls -l $GITHUB_WORKSPACE/../../foo/foo
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v1
