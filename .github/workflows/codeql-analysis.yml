@@ -15,7 +15,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Initialize CodeQL
-      uses: github/codeql-action/init@v1
+      uses: mario-campos/codeql-action/init@source-root-input
       with:
         languages: javascript
     - name: Perform CodeQL Analysis
