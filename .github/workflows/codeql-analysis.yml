@@ -16,6 +16,6 @@ jobs:
       uses: mario-campos/codeql-action/init@source-root-input
       with:
         languages: javascript
-        source-root: ${{ github.workspace }}/src/test/resources/web
+        source-root: src/test/resources/web
     - name: Perform CodeQL Analysis
       uses: mario-campos/codeql-action/analyze@source-root-input
