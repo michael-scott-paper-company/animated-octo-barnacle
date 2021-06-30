@@ -27,8 +27,6 @@ jobs:
 
       - name: Run a one-line script
         run: echo Hello, world!
-
-      - run: which clang-format find xargs nproc jq
       
       - run: brew install clang-format
       
