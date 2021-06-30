@@ -28,6 +28,5 @@ jobs:
       - name: Run a one-line script
         run: echo Hello, world!
       
-      - run: brew install clang-format
+      - run: echo $(which clang-format)
       
-      - run: echo $(nproc)
