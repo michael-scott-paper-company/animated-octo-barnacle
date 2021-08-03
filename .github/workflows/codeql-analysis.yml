@@ -24,19 +24,21 @@ jobs:
       env:
         GITHUB_REPO: ${{ github.repository }}
         GITHUB_TOKEN: ${{ github.token }}
-        CODEQL_LANG: ${{ matrix.language }}
+        LANG: ${{ matrix.language }}
       run: |
         codeql-runner init \
           --github-url "$GITHUB_SERVER_URL" \
           --repository "$GITHUB_REPO" \
-          --languages "$CODEQL_LANG"
+          --languages "$LANG"
     - name: Finalize CodeQL Runner
       env:
         GITHUB_REPO: ${{ github.repository }}
         GITHUB_TOKEN: ${{ github.token }}
+        LANG: ${{ matrix.language }}
       run: |
         codeql-runner analyze \
           --github-url "$GITHUB_SERVER_URL" \
           --repository "$GITHUB_REPO" \
           --commit "$GITHUB_SHA" \
-          --ref "$GITHUB_REF"
+          --ref "$GITHUB_REF" \
+          --category "$LANG"
