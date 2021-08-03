@@ -22,16 +22,17 @@ jobs:
       run: |
         codeql-runner init \
           --github-url "$GITHUB_SERVER_URL" \
-          --repository "$GITHUB_REPO" \
-          --github-auth "$GITHUB_TOKEN"
+          --repository "$GITHUB_REPO"
     - name: Build
       run: codeql-runner autobuild --language java
       continue-on-error: true
     - name: Finalize CodeQL Runner
+      env:
+        GITHUB_REPO: ${{ github.repository }}
+        GITHUB_TOKEN: ${{ github.token }}
       run: |
         codeql-runner analyze \
           --github-url "$GITHUB_SERVER_URL" \
           --repository "$GITHUB_REPO" \
-          --github-auth "$GITHUB_TOKEN" \
           --commit "$GITHUB_SHA" \
           --ref "$GITHUB_REF"
