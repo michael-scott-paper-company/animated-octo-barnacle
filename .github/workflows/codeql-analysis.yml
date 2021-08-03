@@ -11,6 +11,8 @@ jobs:
   CodeQL-JavaScript:
     runs-on: ubuntu-latest
     steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
     - name: Setup CodeQL Runner
       run: |
         wget -q https://github.com/github/codeql-action/releases/download/codeql-bundle-20210726/codeql-runner-linux
@@ -22,8 +24,7 @@ jobs:
       run: |
         codeql-runner init \
           --github-url "$GITHUB_SERVER_URL" \
-          --repository "$GITHUB_REPO" \
-          --config-file .github/codeql/config.yml
+          --repository "$GITHUB_REPO"
     - name: Build
       run: codeql-runner autobuild --language java
       continue-on-error: true
