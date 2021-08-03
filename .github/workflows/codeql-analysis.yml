@@ -24,7 +24,8 @@ jobs:
       run: |
         codeql-runner init \
           --github-url "$GITHUB_SERVER_URL" \
-          --repository "$GITHUB_REPO"
+          --repository "$GITHUB_REPO" \
+          --languages javascript,python
     - name: Build
       run: codeql-runner autobuild --language java
       continue-on-error: true
