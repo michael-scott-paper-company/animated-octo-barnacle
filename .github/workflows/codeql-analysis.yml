@@ -26,6 +26,7 @@ jobs:
           --github-auth "$GITHUB_TOKEN"
     - name: Build
       run: codeql-runner autobuild --language java
+      continue-on-error: true
     - name: Finalize CodeQL Runner
       run: |
         codeql-runner analyze \
