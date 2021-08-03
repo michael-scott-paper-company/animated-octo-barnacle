@@ -9,6 +9,9 @@ on:
 
 jobs:
   CodeQL-JavaScript:
+    strategy:
+      matrix:
+        language: [javascript,python]
     runs-on: ubuntu-latest
     steps:
     - name: Checkout repository
@@ -21,14 +24,12 @@ jobs:
       env:
         GITHUB_REPO: ${{ github.repository }}
         GITHUB_TOKEN: ${{ github.token }}
+        CODEQL_LANG: ${{ matrix.language }}
       run: |
         codeql-runner init \
           --github-url "$GITHUB_SERVER_URL" \
           --repository "$GITHUB_REPO" \
-          --languages javascript,python
-    - name: Build
-      run: codeql-runner autobuild --language java
-      continue-on-error: true
+          --languages "$CODEQL_LANG"
     - name: Finalize CodeQL Runner
       env:
         GITHUB_REPO: ${{ github.repository }}
