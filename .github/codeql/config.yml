@@ -1,9 +1,2 @@
 paths:
 - src/test
-
-paths-ignore:
-- src
-
-
-# queries:
-# - uses: ./.github/codeql/lgtm.qls
