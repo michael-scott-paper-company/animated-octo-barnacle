@@ -2,19 +2,35 @@ name: "Code scanning - action"
 
 on:
   push:
-    branches: [master]
+    branches: [codeql-runner-test]
   pull_request:
-    branches: [master]
+    branches: [codeql-runner-test]
   workflow_dispatch:
 
 jobs:
   CodeQL-JavaScript:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - name: Initialize CodeQL
-      uses: mario-campos/codeql-action/init@source-root-input
-      with:
-        languages: javascript
-    - name: Perform CodeQL Analysis
-      uses: mario-campos/codeql-action/analyze@source-root-input
+    - name: Setup CodeQL Runner
+      run: |
+        wget -q https://github.com/github/codeql-action/releases/download/codeql-bundle-20210726/codeql-runner-linux
+        sudo install -o root -g root -m 0755 codeql-runner-linux /usr/local/bin/codeql-runner
+    - name: Initialize CodeQL Runner
+      env:
+        GITHUB_REPO: ${{ github.repository }}
+        GITHUB_TOKEN: ${{ github.token }}
+      run: |
+        codeql-runner init \
+          --github-url "$GITHUB_SERVER_URL" \
+          --repository "$GITHUB_REPO" \
+          --github-auth "$GITHUB_TOKEN"
+    - name: Build
+      run: codeql-runner autobuild
+    - name: Finalize CodeQL Runner
+      run: |
+        codeql-runner analyze \
+          --github-url "$GITHUB_SERVER_URL" \
+          --repository "$GITHUB_REPO" \
+          --github-auth "$GITHUB_TOKEN" \
+          --commit "$GITHUB_SHA" \
+          --ref "$GITHUB_REF"
