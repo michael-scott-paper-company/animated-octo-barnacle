@@ -10,11 +10,24 @@ on:
 jobs:
   CodeQL-JavaScript:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        language: [ javascript, java ]
     steps:
     - uses: actions/checkout@v2
     - name: Initialize CodeQL
-      uses: mario-campos/codeql-action/init@source-root-input
+      uses: github/codeql-action/init@v1
       with:
-        languages: javascript
+        languages: ${{ matrix.language }}
+        token: ${{ secrets.MY_PAT }}
+        
+    - name: Autobuild
+      uses: github/codeql-action/autobuild@v1
+      with:
+        token: ${{ secrets.MY_PAT }}
+      
     - name: Perform CodeQL Analysis
-      uses: mario-campos/codeql-action/analyze@source-root-input
+      uses: github/codeql-action/analyze@v1
+      with:
+        token: ${{ secrets.MY_PAT }}
