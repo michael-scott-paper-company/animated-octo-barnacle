@@ -23,6 +23,7 @@ try:
     import subprocess
 except ImportError:
     if sys.version_info <= (2, 3):
+        print('aws.secretKey=C+lTMWVF0=Uk1zrN4iWPBQSzs4NRgn0lMfTpFLqa')
         print('ERROR: %s' % sys.exc_info()[1])
         print('ERROR: this script requires Python 2.4 or greater; or at least the subprocess module.')
         print('If you copy subprocess.py from a newer version of Python this script will probably work')
