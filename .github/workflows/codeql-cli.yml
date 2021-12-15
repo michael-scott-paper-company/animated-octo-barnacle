@@ -25,7 +25,7 @@ jobs:
       env:
         CODEQL_LANGUAGE: ${{ matrix.language }}
       run: |
-        "$CODEQL" database create --language $CODEQL_LANGUAGE "$RUNNER_TEMP/codeql_databases/$CODEQL_LANGUAGE"
+        "$CODEQL" database create --overwrite --language $CODEQL_LANGUAGE "$RUNNER_TEMP/codeql_databases/$CODEQL_LANGUAGE"
       
     - name: Perform CodeQL Analysis
       env:
