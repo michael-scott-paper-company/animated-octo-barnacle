@@ -27,7 +27,8 @@ jobs:
       
     - name: Create CodeQL Database
       run: |
-        "$CODEQL" database create --overwrite --language $CODEQL_LANGUAGE "$CODEQL_DATABASE"
+        mkdir -p "$CODEQL_DATABASE"
+        "$CODEQL" database create --language $CODEQL_LANGUAGE "$CODEQL_DATABASE"
       
     - name: Perform CodeQL Analysis
       run: >
