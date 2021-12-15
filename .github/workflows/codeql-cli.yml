@@ -1,0 +1,36 @@
+name: CodeQL CLI
+
+on:
+  workflow_dispatch:
+
+jobs:
+  CodeQL:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        language: [ javascript, java ]
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+      
+    - name: Create CodeQL Database
+      env:
+        CODEQL_LANGUAGE: ${{ matrix.language }}
+      run: codeql database create --language $CODEQL_LANGUAGE "$RUNNER_TEMP/codeql_databases/$CODEQL_LANGUAGE"
+      
+    - name: Perform CodeQL Analysis
+      env:
+        CODEQL_LANGUAGE: ${{ matrix.language }}
+      run: >
+        codeql database analyze
+          --format sarif-latest
+          --output /dev/stdout
+          --quiet
+          "$RUNNER_TEMP/codeql_databases/$CODEQL_LANGUAGE"
+          "${CODEQL_LANGUAGE}-code-scanning.qls" |
+        codeql github upload-results 
+          --sarif /dev/stdin
+          --repository "$GITHUB_REPOSITORY"
+          --ref "$GITHUB_REF"
+          --github-auth-stdin "$GITHUB_TOKEN"
