@@ -15,27 +15,27 @@ jobs:
       uses: actions/checkout@v2
       
     - name: Install CodeQL Bundle
+      env:
+        CODEQL_LANGUAGE: ${{ matrix.language }}
       run: |
         cd "$RUNNER_TEMP"
         wget https://github.com/github/codeql-action/releases/download/codeql-bundle-20211208/codeql-bundle-linux64.tar.gz
         tar zxf codeql-bundle-linux64.tar.gz
         echo "CODEQL=$RUNNER_TEMP/codeql/codeql" >> $GITHUB_ENV
+        echo "CODEQL_LANGUAGE=$CODEQL_LANGUAGE" >> $GITHUB_ENV
+        echo "CODEQL_DATABASE=$RUNNER_TEMP/codeql_databases/$CODEQL_LANGUAGE" >> $GITHUB_ENV
       
     - name: Create CodeQL Database
-      env:
-        CODEQL_LANGUAGE: ${{ matrix.language }}
       run: |
-        "$CODEQL" database create --overwrite --language $CODEQL_LANGUAGE "$RUNNER_TEMP/codeql_databases/$CODEQL_LANGUAGE"
+        "$CODEQL" database create --overwrite --language $CODEQL_LANGUAGE "$CODEQL_DATABASE"
       
     - name: Perform CodeQL Analysis
-      env:
-        CODEQL_LANGUAGE: ${{ matrix.language }}
       run: >
         "$CODEQL" database analyze
           --format sarif-latest
           --output /dev/stdout
           --quiet
-          "$RUNNER_TEMP/codeql_databases/$CODEQL_LANGUAGE"
+          "$CODEQL_DATABASE"
           "${CODEQL_LANGUAGE}-code-scanning.qls" |
         "$CODEQL" github upload-results 
           --sarif /dev/stdin
