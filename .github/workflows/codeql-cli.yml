@@ -36,4 +36,4 @@ jobs:
       
     - name: Perform CodeQL Analysis
       run: |
-        "$CODEQL" database analyze --format sarif-latest --output /dev/stdout --quiet "$CODEQL_DATABASE" "${CODEQL_LANGUAGE}-code-scanning.qls" | "$CODEQL" github upload-results --sarif /dev/stdin '--github-auth-stdin=${{ secrets.CODEQL_TOKEN }}'
+        "$CODEQL" database analyze --format sarif-latest --output /dev/stdout --quiet "$CODEQL_DATABASE" "${CODEQL_LANGUAGE}-code-scanning.qls" | "$CODEQL" github upload-results --sarif /proc/self/fd/0 '--github-auth-stdin=${{ secrets.CODEQL_TOKEN }}'
